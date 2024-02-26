@@ -41,12 +41,12 @@ def spectrum_dict_from_csv(filename):
             spectrum[int(band)] = float(power)
     return spectrum
 
-def ask_save_spectrum(spectrum_dict):
-    save = input("Do you want to save the spectrum to a file? (y/n)")
+def ask_save_spectrum(spectrum_dict, spectrums):
+    save = input("Do you want to save the weighted spectrum to a file? (y/n)")
     if save.lower() == "y":
         filename = input("Enter the filename: ")
         save_spectrum_csv(a_weighted_spectrum, filename)
-    save = input("Do you want to add the spectrum to the working session? (y/n)")
+    save = input("Do you want to add the weighted spectrum to the working session? (y/n)")
     if save.lower() == "y":
         spectrums.append(a_weighted_spectrum)
 
@@ -98,7 +98,7 @@ def main():
                         index = 0
                     a_weighted_spectrum = a_weighting(spectrums[index])
                     print(a_weighted_spectrum)
-                    ask_save_spectrum(a_weighted_spectrum)
+                    ask_save_spectrum(a_weighted_spectrum, spectrums)
                 case 4:
                     try:
                         index = int(input("Enter the index (starting from 0) of the spectrum you want to calculate the C-weighting: "))
@@ -106,7 +106,7 @@ def main():
                         index = 0
                     c_weighted_spectrum = c_weighting(spectrums[index])
                     print(c_weighted_spectrum)
-                    ask_save_spectrum(c_weighted_spectrum)
+                    ask_save_spectrum(c_weighted_spectrum, spectrums)
 
     print("Goodbye!")
     quit()
